@@ -112,7 +112,7 @@ try {
   assert.match(packet.clarification_question, /admission date/);
   assert.equal(packet.documents.find((file) => file.label === "Policy").sha256.length, 64);
 
-  const tamperedToken = startBody.token.slice(0, -1) + (startBody.token.endsWith("a") ? "b" : "a");
+  const tamperedToken = (startBody.token[0] === "a" ? "b" : "a") + startBody.token.slice(1);
   const tampered = await worker.fetch(new Request(`${appUrl}/api/claim/status`, {
     method: "POST", headers: { "content-type": "application/json", origin: appUrl }, body: JSON.stringify({ token: tamperedToken }),
   }), { SARVAM_API_KEY: testKey }, context);
