@@ -3,6 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "dev": "npx --yes wrangler dev",
     "build": "bash scripts/build.sh",
     "validate": "node scripts/validate-artifact.mjs",
     "test": "node tests/smoke.mjs"
